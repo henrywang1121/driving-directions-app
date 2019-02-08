@@ -1,0 +1,25 @@
+<div style="text-align:left">
+  <h1> MapQuest</h1>
+  <input [(ngModel)]="searchbox1" #searchBox1 id="search-box1" 
+  (keyup)="search(searchBox1.value)"/>
+  <input [(ngModel)]="searchbox2" #searchBox2 id="search-box2" 
+  (keyup)="search(searchBox2.value)"/> 
+  <button type="button">Get Directions</button>
+  <p></p>
+  <table border="1">
+    <thead>
+        <tr><th colspan="4" style="text-align:center">
+          Distance: {{dataItems.route.distance}}m
+          - Time: {{dataItems.route.formattedTime}}
+        </th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dataItems.route.legs[0].maneuvers; let i = index" >
+        <td><img src="{{item.iconUrl}}"></td>
+        <td>{{i+1}}.</td>
+        <td><a href="{{item.mapUrl}}" target="_blank">{{item.narrative}}</a></td>
+        <td>{{item.distance}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
